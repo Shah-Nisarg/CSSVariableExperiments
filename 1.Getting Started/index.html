@@ -1,0 +1,143 @@
+<html>
+  <head>
+      <style>
+        body {
+          font-family: 'Segoe UI', 'Segoe';
+        }
+
+        :root {
+          --color: orange;
+        }
+
+        div {
+          margin: 10px auto;
+          width: 300px;
+          padding: 10px;
+          border: 3px solid gray;
+        }
+
+        button {
+          display: block;
+          margin: 3px auto;
+          padding: 10px;
+          background-color: transparent;
+          border: 2px solid black;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+
+        input[type=text] {
+          padding: 5px;
+        }
+      </style>
+  </head>
+  <body>
+    <div class="one">
+      Background color can be set using the variable.
+    </div>
+    <style>
+      .one {
+        background-color: var(--color);
+      }
+    </style>
+
+    <div class="two">
+      Border color can also be set using the variable.
+    </div>
+    <style>
+      .two {
+        border-color: var(--color);
+      }
+    </style>
+
+    <div class="three">
+      And, of course, text color can also be controlled with the variables.
+    </div>
+    <style>
+      .three {
+        color: var(--color);
+      }
+    </style>
+
+    <div class="four">
+      Do these variables work with box-shadow?
+      <strong>Yep!</strong>
+    </div>
+    <style>
+      .four {
+        box-shadow: 3px 3px 2px var(--color);
+      }
+    </style>
+
+    <div class="five">
+      How about pseudo elements?
+    </div>
+    <style>
+      .five::after {
+        content: "It works!";
+        color: var(--color);
+      }
+    </style>
+
+    <div class="six">
+      But does it work with pseudo-classes such as <code>:hover</code> or <code>:focus</code>?
+
+      <button type="button" class="hover-button">Hover me</button>
+      <button type="button" class="focus-button">Click here to focus</button>
+    </div>
+    <style>
+      .six > .hover-button:hover {
+        background-color: var(--color);
+        color: white;
+      }
+
+      .six > .focus-button:focus {
+        background-color: var(--color);
+        color: white;
+      }
+    </style>
+
+    <div class="seven">
+      How about input elements?
+
+      <input type="text" class="input-text" value="Orange text">
+      <input type="text" class="input-background" value="Orange background">
+    </div>
+    <style>
+      .seven > .input-text {
+        color: var(--color);
+      }
+
+      .seven > .input-background {
+        background-color: var(--color);
+      }
+    </style>
+
+    <div class="eight">
+      Does it work with inline styles?
+      <span style="color: var(--color);">Yes, it does.</span>
+    </div>
+
+    <div class="nine">
+      Finally, is it possible to override the value of the variable in certain areas of DOM?
+      <p class="paragraph-blue">
+        Yes, this paragraph is shown in blue.
+      </p>
+      <p>
+        While, this paragraph remains in orange.
+      </p>
+    </div>
+    <style>
+      /* Let's make all paragraph have the text color as specified by the variable. */
+      .nine > p {
+        color: var(--color);
+      }
+
+      /* But, then we want certain paragraphs to be styled differently. */
+      /* Notice that the style "color" is not specified again. */
+      .nine > p.paragraph-blue {
+        --color: blue;
+      }
+    </style>
+  </body>
+</html>

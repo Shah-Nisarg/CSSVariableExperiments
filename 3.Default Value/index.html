@@ -1,0 +1,159 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: 'Segoe UI', 'Segoe';
+      }
+
+      div {
+        margin: 10px auto;
+        width: 300px;
+        padding: 10px;
+        border: 3px solid gray;
+      }
+
+      label {
+        display: inline-block;
+        height: 30px;
+        width: 30px;
+        border: 1px solid #aaa;
+      }
+
+      label > input[type=radio] {
+        display: none;
+      }
+
+      label.green { background-color: green; }
+      label.blue { background-color: blue; }
+      label.red { background-color: red; }
+      label.yellow { background-color: yellow; }
+      label.aqua { background-color: aqua; }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+
+    <div class="one">
+      Select color:
+      <br>
+
+      <label class="blue">
+        <input type="radio" name="color-selector" value="blue">
+      </label>
+
+      <label class="green">
+        <input type="radio" name="color-selector" value="green">
+      </label>
+
+      <label class="red">
+        <input type="radio" name="color-selector" value="red">
+      </label>
+
+      <label class="yellow">
+        <input type="radio" name="color-selector" value="yellow">
+      </label>
+
+      <label class="aqua">
+        <input type="radio" name="color-selector" value="aqua">
+      </label>
+
+      <br>
+      Your selected color is:
+      <span class="color-display"></span>
+    </div>
+
+    <style>
+      .one > .color-display {
+        display: inline-block;
+        height: 1em;
+        width: 50px;
+        background-color: var(--selected-color);
+      }
+    </style>
+
+    <div class="four">
+      Background color can be set using the variable.
+    </div>
+    <style>
+      .four {
+        background-color: var(--selected-color);
+      }
+    </style>
+
+    <div class="five">
+      Border color can also be set using the variable.
+    </div>
+    <style>
+      .five {
+        border-color: var(--selected-color);
+      }
+    </style>
+
+    <div class="two">
+      Select color:
+      <br>
+
+      <label class="blue">
+        <input type="radio" name="color-selector" value="blue">
+      </label>
+
+      <label class="green">
+        <input type="radio" name="color-selector" value="green">
+      </label>
+
+      <label class="red">
+        <input type="radio" name="color-selector" value="red">
+      </label>
+
+      <label class="yellow">
+        <input type="radio" name="color-selector" value="yellow">
+      </label>
+
+      <label class="aqua">
+        <input type="radio" name="color-selector" value="aqua">
+      </label>
+
+      <br>
+      Your selected color is:
+      <span class="color-display"></span>
+    </div>
+
+    <style>
+      body {
+        --theme-color: var(--selected-color, orange);
+      }
+
+      .two > .color-display {
+        display: inline-block;
+        height: 1em;
+        width: 50px;
+        background-color: var(--theme-color);
+      }
+    </style>
+
+    <div class="themed-four">
+      Background color can be set using the variable.
+    </div>
+    <style>
+      .themed-four {
+        background-color: var(--theme-color);
+      }
+    </style>
+
+    <div class="themed-five">
+      Border color can also be set using the variable.
+    </div>
+    <style>
+      .themed-five {
+        border-color: var(--theme-color);
+      }
+    </style>
+
+    <script>
+      $("input[type=radio][name='color-selector']").on("change", function() {
+        var selectedColor = $(this).val();
+        document.body.style.setProperty("--selected-color", selectedColor);
+      });
+    </script>
+  </body>
+</html>
