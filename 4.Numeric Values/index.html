@@ -1,0 +1,153 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: 'Segoe UI', 'Segoe';
+      }
+
+      :root {
+        --some-number: 10;
+      }
+
+      div {
+        margin: 10px auto;
+        width: 300px;
+        padding: 10px;
+        border: 3px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="one">
+      <p class="px">
+        This text translates the variable to <code>px</code> units.
+      </p>
+
+      <p class="em">
+        This text translates the variable to <code>em</code> units.
+      </p>
+    </div>
+    <style>
+      .one > p.px {
+        font-size: calc(var(--some-number) * 2px);
+      }
+
+      .one > p.em{
+        font-size: calc(var(--some-number) * 0.1em);
+      }
+    </style>
+
+    <div class="two">
+      <p class="border">
+        This text has border in <code>px</code> units.
+      </p>
+
+      <p class="padding">
+        This text has some padding.
+      </p>
+
+      <p class="border-radius">
+        You can also set the border-radius.
+      </p>
+
+      <p class="opacity">
+        This text has low opacity.
+      </p>
+    </div>
+    <style>
+      .two > p.border {
+        border: calc(var(--some-number) * 1px) solid #ccc;
+      }
+
+      .two > p.padding {
+        padding: calc(var(--some-number) * 1px);
+        border: 1px solid #ccc;
+      }
+
+      .two > p.border-radius {
+        border: 1px solid #ccc;
+        border-radius: calc(var(--some-number) * 1px);
+      }
+
+      .two > p.opacity {
+        opacity: calc(var(--some-number) / 25);
+      }
+    </style>
+
+    <div class="three">
+      Transition duration can also be tied to the numeric variable:
+
+      <p class="hover-slow">
+        Hover this (slow transition)
+      </p>
+
+      <p class="hover-fast">
+        Hover this (fast transition)
+      </p>
+    </div>
+    <style>
+      .three > p {
+        --duration: calc(var(--some-number) * 0.05s);
+        box-shadow: none;
+        padding: 5px;
+        transition: box-shadow var(--duration) ease-in;
+      }
+
+      .three > p:hover {
+        box-shadow: 0px 0px 3px 5px green;
+      }
+
+      .three > p.hover-slow {
+
+      }
+
+      .three > p.hover-fast {
+        --duration: 0.1s;
+      }
+    </style>
+
+    <div class="four">
+      Repeats at 1x Distance
+      <br>
+      <p class="linear"></p>
+      <p class="radial"></p>
+
+      <br>
+      Repeats at 2x Distance
+      <br>
+      <p class="linear x2"></p>
+      <p class="radial x2"></p>
+    </div>
+    <style>
+      .four > p {
+        --repeat-length: calc(var(--some-number) * 0.5px);
+        display: inline-block;
+        width: 45%;
+        height: 100px;
+        border: 1px solid #ccc;
+      }
+
+      .four > p.linear {
+        background: repeating-linear-gradient(
+          -45deg,
+          white,
+          white var(--repeat-length),
+          orange var(--repeat-length),
+          orange calc(var(--repeat-length) * 2));
+      }
+
+      .four > p.radial {
+        background: repeating-radial-gradient(
+          white,
+          white var(--repeat-length),
+          aqua var(--repeat-length),
+          aqua calc(var(--repeat-length) * 2));
+      }
+
+      .four > p.radial.x2,
+      .four > p.linear.x2 {
+        --repeat-length: calc(var(--some-number) * 1px);
+      }
+    </style>
+  </body>
+</html>
